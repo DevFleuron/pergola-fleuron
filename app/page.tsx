@@ -28,7 +28,7 @@ export default function Home() {
           </div>
           <div className="nav-right">
             <span className="nav-phone">
-              Service &amp; appel gratuits · 3660
+              Service &amp; appel gratuits · 09 72 10 04 44
             </span>
             <a className="nav-cta" href="#devis">
               Devis gratuit
@@ -712,7 +712,7 @@ export default function Home() {
           </div>
           <div>
             Une gamme Fleuron Industries — contact@fleuronindustries.com —
-            Service &amp; appel gratuits au 3660
+            Service &amp; appel gratuits au 09 72 10 04 44
           </div>
           <div>
             © 2026 Fleuron Industries — Mentions légales · Charte de
