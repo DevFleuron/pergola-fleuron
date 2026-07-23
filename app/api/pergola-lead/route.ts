@@ -1,12 +1,16 @@
 import { NextRequest, NextResponse } from "next/server";
 import { sendToCRM } from "@/app/lib/crm";
-import { sendAdminLeadEmail } from "@/app/lib/mailer";
+import {
+  sendAdminLeadEmail,
+  sendClientConfirmationEmail,
+} from "@/app/lib/mailer";
 
 export const runtime = "nodejs";
 
 interface PergolaLeadPayload {
   nom: string;
   tel: string;
+  email: string;
   cp: string;
   surface: string;
   optin: boolean;
@@ -15,6 +19,7 @@ interface PergolaLeadPayload {
 
 const PHONE_RE = /^0[1-9](\s?\d{2}){4}$/;
 const CP_RE = /^\d{5}$/;
+const EMAIL_RE = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
 
 function isValidLead(data: unknown): data is PergolaLeadPayload {
   if (typeof data !== "object" || data === null) return false;
@@ -25,6 +30,8 @@ function isValidLead(data: unknown): data is PergolaLeadPayload {
     d.nom.trim().length >= 2 &&
     typeof d.tel === "string" &&
     PHONE_RE.test(d.tel.trim()) &&
+    typeof d.email === "string" &&
+    EMAIL_RE.test(d.email.trim()) &&
     typeof d.cp === "string" &&
     CP_RE.test(d.cp.trim()) &&
     typeof d.surface === "string" &&
@@ -47,6 +54,7 @@ function toCrmPayload(lead: PergolaLeadPayload) {
     last_name: nom,
     first_name: prenom,
     tel: lead.tel,
+    email: lead.email,
     postal_code: lead.cp,
     observation: `Surface envisagée : ${lead.surface}`,
     type_installation_vendus: "PERGOLA",
@@ -83,22 +91,25 @@ export async function POST(request: NextRequest) {
   const lead: PergolaLeadPayload = {
     nom: body.nom.trim(),
     tel: body.tel.trim(),
+    email: body.email.trim(),
     cp: body.cp.trim(),
     surface: body.surface.trim(),
     optin: Boolean(body.optin),
   };
 
+  const { prenom } = splitName(lead.nom);
   const subject = `Pergola – ${lead.nom} – ${lead.tel}`;
 
   const results = await Promise.allSettled([
     sendToCRM(toCrmPayload(lead)),
     sendAdminLeadEmail({ data: lead, subject }),
+    sendClientConfirmationEmail({ to: lead.email, prenom }),
   ]);
 
+  const taskLabels = ["CRM", "Mail admin", "Mail client"];
   results.forEach((result, index) => {
     if (result.status === "rejected") {
-      const label = index === 0 ? "CRM" : "Mail admin";
-      console.error(`❌ Tâche "${label}" échouée:`, result.reason);
+      console.error(`❌ Tâche "${taskLabels[index]}" échouée:`, result.reason);
     }
   });
 

@@ -19,6 +19,7 @@ export default function QuoteForm() {
     const payload = {
       nom: String(formData.get("nom") ?? "").trim(),
       tel: String(formData.get("tel") ?? "").trim(),
+      email: String(formData.get("email") ?? "").trim(),
       cp: String(formData.get("cp") ?? "").trim(),
       surface: String(formData.get("surface") ?? "").trim(),
       optin: formData.get("optin") === "on",
@@ -103,6 +104,16 @@ export default function QuoteForm() {
       </div>
       <div className="field-row">
         <div className="field">
+          <label htmlFor="email">Email</label>
+          <input
+            type="email"
+            id="email"
+            name="email"
+            required
+            placeholder="jean.dupont@email.com"
+          />
+        </div>
+        <div className="field">
           <label htmlFor="cp">Code postal</label>
           <input
             type="text"
@@ -113,18 +124,18 @@ export default function QuoteForm() {
             pattern="^\d{5}$"
           />
         </div>
-        <div className="field">
-          <label htmlFor="surface">Surface envisagée</label>
-          <select id="surface" name="surface" required defaultValue="">
-            <option value="" disabled>
-              Choisir…
-            </option>
-            <option>Moins de 10 m²</option>
-            <option>10 à 20 m²</option>
-            <option>Plus de 20 m²</option>
-            <option>Je ne sais pas encore</option>
-          </select>
-        </div>
+      </div>
+      <div className="field">
+        <label htmlFor="surface">Surface envisagée</label>
+        <select id="surface" name="surface" required defaultValue="">
+          <option value="" disabled>
+            Choisir…
+          </option>
+          <option>Moins de 10 m²</option>
+          <option>10 à 20 m²</option>
+          <option>Plus de 20 m²</option>
+          <option>Je ne sais pas encore</option>
+        </select>
       </div>
 
       <label className="consent">
