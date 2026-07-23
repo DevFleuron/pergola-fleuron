@@ -658,27 +658,35 @@ export default function Home() {
           <div className="reviews-grid">
             <div className="review-card">
               <span className="stars">★★★★★</span>
+              <div className="review-title">Avec une belle équipe</div>
               <p>
-                &quot;Travail propre et efficace. Correspond à mes
-                attentes.&quot;
+                Avec une belle équipe , et une participation de ma part les
+                travaux ont été éffectué avec beaucoup de soins malgrer une
+                forte chaleur . Je recommande l&apos;établissement pour la
+                gentillesse et le suivie des travaux a savoir ci sa ce passe
+                bien,etc...
               </p>
-              <div className="review-author">Stephane C.</div>
+              <div className="review-author">Delage Dominique</div>
             </div>
             <div className="review-card">
               <span className="stars">★★★★★</span>
+              <div className="review-title">Une super entreprise</div>
               <p>
-                &quot;Très bonne expérience avec de très bons interlocuteurs.
-                Matériel de très bonne qualité.&quot;
+                Une super entreprise, un bon travail de qualité … on recommande
+                … très professionnels.
               </p>
-              <div className="review-author">Mathieu C.</div>
+              <div className="review-author">Humbert</div>
             </div>
             <div className="review-card">
               <span className="stars">★★★★★</span>
+              <div className="review-title">Une équipe parfaite</div>
               <p>
-                &quot;Installation rapide et efficace, bien calculée pour un
-                résultat très agréable.&quot;
+                Une prestation plus que parfait sur tous les points ,un grand
+                merci encore pour le travail réalisé et le professionnalisme
+                apporte de la prise de rendez-vous au résultat final Bravo à
+                vous Je les recommande vivement
               </p>
-              <div className="review-author">Cabrol D.</div>
+              <div className="review-author">David Sciangula</div>
             </div>
           </div>
         </div>
