@@ -28,7 +28,7 @@ export default function Home() {
           </div>
           <div className="nav-right">
             <span className="nav-phone">
-              Service &amp; appel gratuits · 09 72 10 04 44
+              Service &amp; appel gratuits · 3660
             </span>
             <a className="nav-cta" href="#devis">
               Devis gratuit
@@ -695,10 +695,11 @@ export default function Home() {
       <div className="press">
         Fleuron Industries, ils en parlent
         <div className="press-names">
-          <span>TF1</span>
-          <span>BFMTV</span>
-          <span>LCI</span>
-          <span>CNEWS</span>
+          {/* TODO: déposer les logos officiels dans /public/press/ (SVG de préférence) */}
+          <img src="/press/tf1.png" alt="TF1" />
+          <img src="/press/bfm.png" alt="BFMTV" />
+          <img src="/press/lci.png" alt="LCI" />
+          <img src="/press/cnews.png" alt="CNEWS" />
         </div>
       </div>
 
@@ -711,7 +712,7 @@ export default function Home() {
           </div>
           <div>
             Une gamme Fleuron Industries — contact@fleuronindustries.com —
-            Service &amp; appel gratuits au 09 72 10 04 44
+            Service &amp; appel gratuits au 3660
           </div>
           <div>
             © 2026 Fleuron Industries — Mentions légales · Charte de
